@@ -1,43 +1,105 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DefaultLayout from '../../components/Layouts/DefaultLayout'
+import TextField from '../../components/Modules/Textfield'
+import Button from '../../components/Modules/Button'
+import { useAtom } from 'jotai'
+import { isOpenModalAtom } from '../../jotai/atoms'
+import { createNewCurrency } from '../../utils/Currency/createNewCurrency'
+import PopUpModal from '../../components/Modules/Modals'
 
 const CurrencyForm = () => {
+
+    const [currencyName, setCurrencyName] = useState("")
+    const [currencySymbol, setCurrencySymbol] = useState("")
+    const [country, setCountry] = useState("")
+    const [isOpenModal, setIsOpenModal] = useAtom(isOpenModalAtom)
+
+
+
+    useEffect(() => {
+        clearField()
+    }, [])
+
+    const submit = async () => {
+
+        const data = {
+            currency_name: currencyName,
+            currency_symbol: currencySymbol,
+            currency_country: country
+        }
+
+        const response = await createNewCurrency(data)
+
+
+        if (response.status == 200) {
+            clearField()
+            setIsOpenModal(true)
+        }
+
+    }
+
+
+    const clearField = async () => {
+        setCurrencyName("")
+        setCurrencySymbol("")
+        setCountry("")
+        document.getElementById("Currency Name").value = ""
+        document.getElementById("Currency Symbol").value = ""
+        document.getElementById("countries").value = ""
+    }
+
     return (
+
+
 
 
         <DefaultLayout>
 
         
-            <div className='mt-40'>
+            <div className='mt-20'>
 
-                <div className='my-20 flex items-center justify-center text-2xl'>
+                <div className='my-10 flex items-center justify-center text-2xl'>
                 <label>Currency Registration</label>
                 </div>
 
             <form class="max-w-sm mx-auto">
 
-            <div class="mb-5">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Currency Name</label>
-                <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
-            </div>
-            <div class="mb-5">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Currency Symbol</label>
-                <input type="text" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></input>
-            </div>
+                    <TextField
+                        textFieldName={"Currency Name"}
+                        setValue={setCurrencyName}
+                    />
+                    <TextField
+                        textFieldName={"Currency Symbol"}
+                        setValue={setCurrencySymbol}
+                    />
 
             <div>
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your country</label>
-                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select
+
+                            onChange={(e) => { setCountry(e.target.value) }}
+                            id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option>United States</option>
                     <option>Canada</option>
                     <option>France</option>
                     <option>Germany</option> 
+                            <option>India</option> 
                 </select>
             </div>
 
             <div className='flex justify-center items-center mt-20'>
-            <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
-            <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cancel</button>
+                        <Button
+                            action={"submit"}
+                            buttonText={"Submit"}
+                            buttonAction={submit}
+                        />
+                        <Button
+                            action={"Clear"}
+                            buttonText={"Clear"}
+                            buttonAction={clearField}
+                        />
+
+
             </div>
             
             </form>
@@ -45,6 +107,12 @@ const CurrencyForm = () => {
             
 
             </div>
+
+            <PopUpModal
+                modalTitle={"Success"}
+                message={"New Currency Registration Success!"}
+            />
+
 
             </DefaultLayout>
     )

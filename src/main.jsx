@@ -7,7 +7,9 @@ import SignIn from "./Pages/SignIn";
 import CurrencyForm from "./Pages/Currency";
 import MerchantPage from "./Pages/MerchantRegistration";
 import MerchantBankPage from "./Pages/MerchantBank";
-
+import PaymentGatewayRegistration from "./Pages/PaymentGateway";
+import RegisterPaymentGatewayChannel from "./Pages/PaymentGatewayChannel";
+import RegisterPaymentChannel from "./Pages/PaymentChannel";
 
 
 
@@ -32,6 +34,18 @@ const router = createBrowserRouter([
   {
     element:<MerchantBankPage/>,
     path: "/merchant/bank"
+  },
+  {
+    element: <PaymentGatewayRegistration />,
+    path: "/pg"
+  },
+  {
+    element: <RegisterPaymentGatewayChannel />,
+    path: "/pg/channel"
+  },
+  {
+    element: <RegisterPaymentChannel />,
+    path: "/psp"
   }
 
 ])

@@ -1,49 +1,358 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SideBar = () => {
+    const navigate = useNavigate()
+
+
     return (
-        // <div className="drawer lg:drawer-open">
-        //     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        //     <div className="drawer-content flex flex-col items-center m-10">
-        //         {/* Page content here */}
-        //         {children}
-        //         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-        //             Open drawer
-        //         </label>
-        //     </div>
-        //     <div className="drawer-side">
-        //         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-        //         <ul className="menu bg-[#f2edf2] text-base min-h-full w-60 p-4 rounded-lg mx-4">
-        //             {/* Sidebar content here */}
-        //             <li><a>Sidebar Item 1</a></li>
-        //             <li><a>Sidebar Item 2</a></li>
-        //         </ul>
-        //     </div>
-        // </div>
+        <div className="flex h-screen flex-col justify-between border-e border-gray-100 bg-white">
+            <div className="px-4 py-6">
 
-        <div>
-            <div className="drawer">
-                <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content">
-                    {/* Page content here */}
-                    <label htmlFor="my-drawer" className="btn bg-transparent ">
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
-                            <path d="M38,14H6v-4c0-2.2,1.8-4,4-4h32v4C42,12.2,40.2,14,38,14z M42,24v-4H10c-2.2,0-4,1.8-4,4v4h32C40.2,28,42,26.2,42,24z M42,38v-4H10c-2.2,0-4,1.8-4,4v4h32C40.2,42,42,40.2,42,38z"></path>
-                        </svg>
+                <ul className="mt-6 space-y-1 ">
+
+                    <li
+                        className='cursor-pointer hover:bg-gray-100 hover:text-gray-700'
+                        onClick={() => {
+                            navigate('/')
+                        }}>
+                        <a
+                            className="block rounded-lg  px-4 py-2 text-sm font-medium text-gray-700"
+
+                        >
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Transaction </span>
+
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List Of Transaction
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Calendar
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
 
 
-                    </label>
+                    <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Merchant </span>
 
-                </div>
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu bg-base text-base-content min-h-full w-80 p-4 mt-20 ml-10">
-                        {/* Sidebar content here */}
-                        <li className='hover:transition-all hover:duration-1000 hover:bg-white hover:ease-in-out hover:text-2xl'><a>Dashboard</a></li>
-                        <li className='hover:text-2xl'><a>Sidebar Item 2</a></li>
-                    </ul>
-                </div>
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li onClick={() => { navigate('/merchant') }}>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Register New Merchant
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List of Merchants
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+
+                    <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Payment Channel </span>
+
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Create New Payment Channel
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List of Payment Channel
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Payment Gateway </span>
+
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Register New Payment Gateway
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List of Payment Gateway
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Utilities </span>
+
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li >
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Register New Currency
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List of Currency
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Register New Status
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        List of Status
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        >
+                            Sign Out
+                        </a>
+                    </li>
+
+                    {/* <li>
+                        <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                        >
+                            Invoices
+                        </a>
+                    </li> */}
+
+                    {/* <li>
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                                className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                            >
+                                <span className="text-sm font-medium"> Account </span>
+
+                                <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="size-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </summary>
+
+                            <ul className="mt-2 space-y-1 px-4">
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Details
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Security
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="#"
+                                        className="w-full rounded-lg px-4 py-2 [text-align:_inherit] text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                                    >
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li> */}
+                </ul>
             </div>
+
+            {/* <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
+                <a href="#" className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
+                    <img
+                        alt=""
+                        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                        className="size-10 rounded-full object-cover"
+                    />
+
+                    <div>
+                        <p className="text-xs">
+                            <strong className="block font-medium">Eric Frusciante</strong>
+
+                            <span> eric@frusciante.com </span>
+                        </p>
+                    </div>
+                </a>
+            </div> */}
         </div>
     )
 }
