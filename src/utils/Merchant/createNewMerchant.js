@@ -5,8 +5,6 @@ import { apiInstance } from "../apiInstance";
 export const createNewMerchant = async (data) => {
     try {
 
-        console.log(data);
-
 
         const merchantData = {
             merchant_name: data.merchant_name,

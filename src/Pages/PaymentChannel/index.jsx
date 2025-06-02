@@ -17,10 +17,12 @@ const RegisterPaymentChannel = () => {
     const [selectedPgChannelIndex, setPgChannelIndex] = useState("")
 
     const [paymentName, setPaymentName] = useState("")
+    const [paymentChannelId, setPaymentChannelId] = useState("")
     const [bank, setBank] = useState("")
     const [accountName, setAccountName] = useState("")
     const [accountNumber, setAccountNumber] = useState("")
     const [paymentFee, setPaymentFee] = useState("")
+    const [withdrawalFee, setWithdrawalFee] = useState("")
     const [timelimit, setTimelimit] = useState("")
     const [minAmount, setMinAmount] = useState("")
     const [maxAmount, setMaxAmount] = useState("")
@@ -32,15 +34,17 @@ const RegisterPaymentChannel = () => {
 
         const data = {
             payment_name: paymentName,
+            payment_channel_id: paymentChannelId,
             payment_gateway_channel_id: pgChannelId,
             bank: bank,
             account_name: accountName,
             account_number: accountNumber,
             payment_fee_to_pg: paymentFee,
+            withdrawal_fee_to_pg: withdrawalFee,
             timelimit_payment: timelimit,
             min_amount: minAmount,
             max_amount: maxAmount,
-            currency_id: pgChannelList[selectedPgChannelIndex].currency_id
+            currency_id: pgChannelList[selectedPgChannelIndex - 1].currency_id
         }
 
         const response = await createNewPaymentChannel(data)
@@ -58,9 +62,11 @@ const RegisterPaymentChannel = () => {
         setPgChannelIndex("")
 
         setPaymentName("")
+        setPaymentChannelId("")
         setBank("")
         setAccountName("")
         setAccountNumber("")
+        setWithdrawalFee("")
         setPaymentFee("")
         setTimelimit("")
         setMinAmount("")
@@ -69,9 +75,11 @@ const RegisterPaymentChannel = () => {
         document.getElementById("Payment Name").value = ""
         document.getElementById("Currency").value = ""
         document.getElementById("Bank").value = ""
+        document.getElementById("Payment Channel Id").value = ""
         document.getElementById("Account Name").value = ""
         document.getElementById("Account Number").value = ""
         document.getElementById("Payment Fee to Payment Gateway").value = ""
+        document.getElementById("Withdrawal Fee to Payment Gateway").value = ""
         document.getElementById("Timelimit Payment in Seconds").value = ""
         document.getElementById("Minimum Amount").value = ""
         document.getElementById("Maximum Amount").value = ""
@@ -86,6 +94,12 @@ const RegisterPaymentChannel = () => {
     }, [])
 
     useEffect(() => {
+
+        // console.log("INDEX : " + document.getElementById("Payment Gateway Channel").selectedOptions[0]["index"]);
+        // console.log(pgChannelList);
+        // console.log(pgChannelList[selectedPgChannelIndex - 1].currency_id);
+
+
 
         if (pgChannelId) {
             setPgChannelIndex(document.getElementById("Payment Gateway Channel").selectedOptions[0]["index"])
@@ -117,7 +131,7 @@ const RegisterPaymentChannel = () => {
                     <TextField
                         textFieldName={"Currency"}
                         defaultValue={
-                            selectedPgChannelIndex !== "" ? pgChannelList[selectedPgChannelIndex]["currency_name"] : ""
+                            selectedPgChannelIndex !== "" ? pgChannelList[selectedPgChannelIndex - 1]["currency_name"] : ""
                         }
                         disabled={true}
                     />
@@ -125,6 +139,11 @@ const RegisterPaymentChannel = () => {
                     <TextField
                         textFieldName={"Payment Name"}
                         setValue={setPaymentName}
+                    />
+
+                    <TextField
+                        textFieldName={"Payment Channel Id"}
+                        setValue={setPaymentChannelId}
                     />
 
 
@@ -146,6 +165,11 @@ const RegisterPaymentChannel = () => {
                     <TextField
                         textFieldName={"Payment Fee to Payment Gateway"}
                         setValue={setPaymentFee}
+                    />
+
+                    <TextField
+                        textFieldName={"Withdrawal Fee to Payment Gateway"}
+                        setValue={setWithdrawalFee}
                     />
 
                     <TextField

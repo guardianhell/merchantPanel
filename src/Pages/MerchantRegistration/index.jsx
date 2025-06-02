@@ -65,6 +65,7 @@ const MerchantPage = () => {
                         setValue={setMerchantAddress}
                     />
                     <div className='flex justify-center items-center mt-20 gap-4'>
+
                         <Button
                             action={"submit"}
                             buttonAction={submit}

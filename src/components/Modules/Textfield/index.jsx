@@ -12,7 +12,7 @@ const TextField = ({ textFieldName, setValue, defaultValue, disabled }) => {
                 }}
                 value={defaultValue}
                 disabled={disabled}
-                type="text" id={textFieldName} class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></input>
+                type="text" id={textFieldName} class={`${disabled ? "bg-gray-200" : "bg-white"} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5`}></input>
         </div>
     )
 }

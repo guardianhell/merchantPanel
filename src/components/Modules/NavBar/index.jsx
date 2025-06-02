@@ -6,9 +6,11 @@ const NavBar = ({ children }) => {
     const navigate = useNavigate()
     return (
         <div>
-            <div className="navbar bg-base shadow-md p-10 mx-4 rounded-lg gap-4">
-                <div className="flex-1 px-10">
-                    <a className="text-5xl">ACME</a>
+            <div className="navbar bg-white shadow-md mx-2 rounded-lg gap-4">
+                <div className="flex-1 px-5">
+                    <img src='TITAN PAY HRES NEW.png'
+                        width={250}
+                    ></img>
                 </div>
                 <div className="flex gap-10 mr-8">
                     <div className="dropdown dropdown-end">

@@ -10,43 +10,94 @@ import MerchantBankPage from "./Pages/MerchantBank";
 import PaymentGatewayRegistration from "./Pages/PaymentGateway";
 import RegisterPaymentGatewayChannel from "./Pages/PaymentGatewayChannel";
 import RegisterPaymentChannel from "./Pages/PaymentChannel";
+import AddMerchantPaymentChannel from "./Pages/MerchantPaymentChannel";
+import MerchantList from "./Pages/MerchantList";
+import CurrencyList from "./Pages/CurrencyList";
+import MerchantDetail from "./Pages/MerchantDetail";
+import PaymentChannelList from "./Pages/PaymentChannelList";
+import PaymentGatewayChannelList from "./Pages/PaymentGatewayChannelList";
+import StatementPage from "./Pages/Statement";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
+import WithdrawalRequest from "./Pages/Withdrawal";
 
 
 
 const router = createBrowserRouter([
-
-  {
-    element: <Home />,
-    path: "/"
-  },
   {
     element: <SignIn />,
     path: "/login"
   },
   {
-    element: <CurrencyForm/>,
-    path: "/currency"
+    element: <WithdrawalRequest />,
+    path: "/wd"
   },
+
   {
-    element: <MerchantPage/>,
-    path: "/merchant"
+    element: <AddMerchantPaymentChannel />,
+    path: "/merchant/payment-channel"
   },
+
   {
-    element:<MerchantBankPage/>,
-    path: "/merchant/bank"
+    element: <ProtectedRoutes />,
+    children:
+      [
+        {
+          element: <Home />,
+          path: "/"
+        },
+        {
+          element: <CurrencyForm />,
+          path: "/currency"
+        },
+        {
+          element: <CurrencyList />,
+          path: "/currency/list"
+        },
+        {
+          element: <MerchantPage />,
+          path: "/merchant"
+        },
+        {
+          element: <MerchantBankPage />,
+          path: "/merchant/bank"
+        },
+
+
+
+        {
+          element: <PaymentGatewayRegistration />,
+          path: "/pg"
+        },
+        {
+          element: <RegisterPaymentGatewayChannel />,
+          path: "/pg/channel"
+        },
+        {
+          element: <PaymentGatewayChannelList />,
+          path: "/pg/channel/list"
+        },
+        {
+          element: <RegisterPaymentChannel />,
+          path: "/psp"
+        },
+        {
+          element: <PaymentChannelList />,
+          path: "/psp/list"
+        },
+        {
+          element: <MerchantList />,
+          path: "/merchant/list"
+        },
+        {
+          element: <MerchantDetail />,
+          path: "/merchant/detail"
+        },
+        {
+          element: <StatementPage />,
+          path: "/statement"
+        }
+      ]
   },
-  {
-    element: <PaymentGatewayRegistration />,
-    path: "/pg"
-  },
-  {
-    element: <RegisterPaymentGatewayChannel />,
-    path: "/pg/channel"
-  },
-  {
-    element: <RegisterPaymentChannel />,
-    path: "/psp"
-  }
 
 ])
 
