@@ -10,8 +10,9 @@ export const apiInstance = axios.create({
 })
 
 export const authApiInstance = axios.create({
-    baseURL: "http://localhost:4000/api-v1/auth/",
+    baseURL: "http://localhost:4000/api-v1/auth",
     headers: {
+        'Access-Control-Allow-Origin': '*',
         "Content-Type": "application/json"
     }
 })

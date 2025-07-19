@@ -5,6 +5,7 @@ import Button from '../../components/Modules/Button'
 import DropDownList from '../../components/Modules/DropDownList'
 import { getAllMerchantAccount } from '../../utils/Merchant/getAllMerchantAccount'
 import numberFormatted from '../../utils/numberFormated'
+import { sub } from 'framer-motion/client'
 
 
 const WithdrawalRequest = () => {
@@ -18,7 +19,43 @@ const WithdrawalRequest = () => {
     const [currencySymbol, setCurrencySymbol] = useState(null)
     const [receiverName, setReceiverName] = useState("")
     const [referenceNumber, setReferenceNumber] = useState("")
+    const [callbackURL, setCallbackURL] = useState("")
 
+    const submit = async () => {
+
+        console.log(accountList[accountIndex - 1]["merchant_number"]);
+
+
+
+        const data = {
+            "merchant_number": accountList[accountIndex - 1]["merchant_number"],
+            "merchant_account_number": accountList[accountIndex - 1]["merchant_account_number"],
+            "ref_no": referenceNumber,
+            "amount": wdAmount,
+            "callback_url": callbackURL,
+            "bank_account_number": receiverAccountNumber,
+            "merchant_user": 1
+        }
+    }
+
+    const clearField = () => {
+        setSelectedAccount(null)
+        setAccountIndex(null)
+        setWdAmount(null)
+        setReceiverBankName(null)
+        setReceiverAccountNumber(null)
+        setCurrencySymbol(null)
+        setReceiverName(null)
+        setReferenceNumber(null)
+        document.getElementById("Account Number").value = null
+        document.getElementById("Currency").value = null
+        document.getElementById("Available Balance").value = null
+        document.getElementById("Withdraw Amount").value = null
+        document.getElementById("Receiver Bank Name").value = null
+        document.getElementById("Receiver Account Number").value = null
+        document.getElementById("Receiver Name").value = null
+        document.getElementById("Withdraw Reference Number").value = null
+    }
 
     useEffect(() => {
         getAllMerchantAccount().then((result) => {
@@ -33,7 +70,6 @@ const WithdrawalRequest = () => {
         if (selectedAccount) {
             setAccountIndex(document.getElementById("Account Number").selectedOptions[0]["index"])
             // setCurrencySymbol(accountList[accountIndex - 1]["currency_symbol"])
-
         }
 
     }, [selectedAccount])
@@ -75,22 +111,35 @@ const WithdrawalRequest = () => {
 
                 <TextField
                     textFieldName={"Withdraw Amount"}
+                    maskingCurrency={true}
+                    setValue={setWdAmount}
+                    currencySymbol={accountIndex !== null ? accountList[accountIndex - 1]["currency_symbol"] : ""}
+
                 />
 
                 <TextField
                     textFieldName={"Receiver Bank Name"}
+                    setValue={setReceiverBankName}
                 />
 
                 <TextField
                     textFieldName={"Receiver Account Number"}
+                    setValue={setReceiverAccountNumber}
                 />
 
                 <TextField
                     textFieldName={"Receiver Name"}
+                    setValue={setReceiverName}
                 />
 
                 <TextField
                     textFieldName={"Withdraw Reference Number"}
+                    setValue={setReferenceNumber}
+                />
+
+                <TextField
+                    textFieldName={"Callback Url"}
+                    setValue={setCallbackURL}
                 />
 
 
@@ -104,11 +153,12 @@ const WithdrawalRequest = () => {
                     <Button
                         action={"submit"}
                         buttonText={"Submit"}
+                        buttonAction={submit}
                     />
                     <Button
                         action={"Clear"}
                         buttonText={"Clear"}
-
+                        buttonAction={clearField}
                     />
 
 

@@ -13,15 +13,15 @@ const AccountCard = ({ merchantNumber, accountNumber, balance, status, currencyN
     }
 
     return (
-        <div className='grid grid-cols-6 grid-rows-10 rounded-xl bg-gradient-to-r from-slate-500 via-slate-400 to-slate-300 shadow-xl shadow-slate-600 inset-shadow-sm hover:shadow-2xl hover:shadow-slate-800 hover:inset-shadow-lg hover:m-1'>
+        <div className='transition-all transition-discrete duration-400 ease-in-out cursor-pointer grid grid-cols-6 grid-rows-9 rounded-xl bg-gradient-to-r from-slate-500 via-slate-400 to-slate-300 shadow-xl shadow-slate-600 inset-shadow-sm hover:shadow-2xl hover:shadow-slate-800 hover:inset-shadow-lg hover:m-1'>
             <div className='ml-2 col-span-2 row-start-2 row-end-4'>
                 <img src='TITAN PAY HRES NEW.png'></img>
             </div>
-            <div className='col-start-6 row-start-2 '>{currencyName}</div>
+            <div className='col-start-5 col-span-2 row-start-2 text-sm'>{currencyName}</div>
             <div className='ml-3 row-start-5 col-span-3  text-xs'>{merchantNumber}</div>
             <div className='ml-3 row-start-6 col-span-3  text-xs'>{accountNumber}</div>
             <div className='ml-3 row-start-7 col-span-3 text-xs'>{status}</div>
-            <div className='ml-3 row-start-9 row-end-9 col-span-6 text-md'>{numberFormatted(balance)}</div>
+            <div className='ml-3 row-start-8 row-end-9 col-span-6 text-md'>{numberFormatted(balance)}</div>
 
         </div>
 

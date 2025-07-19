@@ -1,16 +1,11 @@
 import { useAtom } from "jotai";
 import { Outlet, Navigate } from "react-router-dom";
-import { isLogin } from "../jotai/atoms";
+import { currentPage, isLogin } from "../jotai/atoms";
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes = ({ isAuthenticated }) => {
 
-
-    const [isUserLogin, setIsLogin] = useAtom(isLogin)
-
-    const user = isUserLogin
-
-    return user ? <Outlet /> : <Navigate to={"/login"} />
-
+    return isAuthenticated ? <Outlet /> :
+        <Navigate to="/login" replace />
 }
 
 export default ProtectedRoutes

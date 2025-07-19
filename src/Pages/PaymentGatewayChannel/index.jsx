@@ -9,12 +9,14 @@ import { createNewPGChannel } from '../../utils/PaymentGatewayChannel/createNewP
 import PopUpModal from '../../components/Modules/Modals'
 import { isOpenModalAtom } from '../../jotai/atoms'
 import { useAtom } from 'jotai'
+import CurrencyList from '../CurrencyList'
 
 const RegisterPaymentGatewayChannel = () => {
 
     const [currencies, setCurrency] = useState([])
     const [pgList, setPgList] = useState([])
     const [selectedCurrencyId, setSelectedCurrencyId] = useState('')
+    const [currencyIndex, setCurrencyIndex] = useState(null)
     const [selectedPgId, setSelectedPgId] = useState('')
     const [pgChannelName, setPgChannelName] = useState('')
     const [paymentChannelId, setPaymentChannelId] = useState('')
@@ -29,6 +31,14 @@ const RegisterPaymentGatewayChannel = () => {
         document.getElementById("Payment Channel ID").value = null
         document.getElementById("Minimum Transaction Amount").value = null
         document.getElementById("Maximum Transaction Amount").value = null
+        document.getElementById("Currency").value = null
+        setMinTrx(null)
+        setMaxTrx(null)
+        setPgChannelName(null)
+        setPaymentChannelId(null)
+        setCurrencyIndex(null)
+        setSelectedPgId(null)
+        setSelectedCurrencyId(null)
     }
 
     const submit = async () => {
@@ -54,12 +64,23 @@ const RegisterPaymentGatewayChannel = () => {
         getAllActiveCurrency().then((result) => {
             setCurrency(result.data.data)
         })
-
         getAllActivePaymentGateway().then((result) => {
             setPgList(result.data.data)
         })
 
     }, [])
+
+    useEffect(() => {
+
+        if (selectedCurrencyId) {
+            setCurrencyIndex(document.getElementById("Currency").selectedOptions[0]["index"])
+
+            // console.log(currencyIndex !== null ? currencies[currencyIndex - 1]["currency_symbol"] : "");
+            document.getElementById("Minimum Transaction Amount").value = null
+            document.getElementById("Maximum Transaction Amount").value = null
+        }
+
+    }, [selectedCurrencyId])
 
 
     return (
@@ -93,14 +114,15 @@ const RegisterPaymentGatewayChannel = () => {
                 <TextField
                     textFieldName={"Minimum Transaction Amount"}
                     setValue={setMinTrx}
+                    maskingCurrency={true}
+                    currencySymbol={currencyIndex !== null ? currencies[currencyIndex - 1]["currency_symbol"] : ""}
                 />
                 <TextField
                     textFieldName={"Maximum Transaction Amount"}
                     setValue={setMaxTrx}
+                    maskingCurrency={true}
+                    currencySymbol={currencyIndex !== null ? currencies[currencyIndex - 1]["currency_symbol"] : ""}
                 />
-
-
-
 
 
                 <div className='flex justify-center items-center mt-20'>

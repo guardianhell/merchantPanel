@@ -19,6 +19,19 @@ import PaymentGatewayChannelList from "./Pages/PaymentGatewayChannelList";
 import StatementPage from "./Pages/Statement";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import WithdrawalRequest from "./Pages/Withdrawal";
+import { verify } from "./utils/Authentication/login";
+
+const isLogin = async () => {
+  const veri = await verify()
+
+  if (veri.data.status === 200) {
+    return true
+  } else {
+    return false
+  }
+
+
+}
 
 
 
@@ -27,18 +40,10 @@ const router = createBrowserRouter([
     element: <SignIn />,
     path: "/login"
   },
-  {
-    element: <WithdrawalRequest />,
-    path: "/wd"
-  },
+
 
   {
-    element: <AddMerchantPaymentChannel />,
-    path: "/merchant/payment-channel"
-  },
-
-  {
-    element: <ProtectedRoutes />,
+    element: <ProtectedRoutes isAuthenticated={await isLogin()} />,
     children:
       [
         {
@@ -95,6 +100,14 @@ const router = createBrowserRouter([
         {
           element: <StatementPage />,
           path: "/statement"
+        },
+        {
+          element: <WithdrawalRequest />,
+          path: "/wd"
+        },
+        {
+          element: <AddMerchantPaymentChannel />,
+          path: "/merchant/payment-channel"
         }
       ]
   },

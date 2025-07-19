@@ -1,10 +1,14 @@
 import React from 'react'
 import EachUtils from '../../../utils/EachUtils'
 
-const DropDownList = ({ dropDownText, setValue, dataList, field, defaultValue }) => {
+const DropDownList = ({ dropDownText, setValue, dataList, field, defaultValue, textHide }) => {
     return (
         <div className='mb-5'>
-            <label for={dropDownText} class="block mb-2 text-sm font-medium text-gray-900">{dropDownText}</label>
+
+            {
+                !textHide ? <label for={dropDownText} class="block mb-2 text-sm font-medium text-gray-900">{dropDownText}</label> : ""
+            }
+
             <select
                 selected={3}
                 onChange={(e) => {

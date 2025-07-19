@@ -4,14 +4,13 @@ import SideBar from '../../Modules/SideBar'
 
 const DefaultLayout = ({ children }) => {
     return (
-        <div className='h-screen'>
+        <div className='min-h-screen '>
             <Navbar />
-            <div className='grid grid-cols-8'>
+            <div className='grid grid-cols-[250px_1fr]'>
                 <SideBar />
-                <div className='col-span-7'>
+                <div className=''>
                     {children}
                 </div>
-
             </div>
 
         </div>

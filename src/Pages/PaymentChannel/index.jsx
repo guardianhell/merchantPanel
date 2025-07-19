@@ -71,7 +71,7 @@ const RegisterPaymentChannel = () => {
         setTimelimit("")
         setMinAmount("")
         setMaxAmount("")
-
+        document.getElementById("Payment Gateway Channel").value = ""
         document.getElementById("Payment Name").value = ""
         document.getElementById("Currency").value = ""
         document.getElementById("Bank").value = ""
@@ -88,8 +88,11 @@ const RegisterPaymentChannel = () => {
 
     useEffect(() => {
         getAllActivePaymentGateway().then((result) => {
+
             setPgChannelList(result.data.data)
         })
+
+
 
     }, [])
 
@@ -180,11 +183,15 @@ const RegisterPaymentChannel = () => {
                     <TextField
                         textFieldName={"Minimum Amount"}
                         setValue={setMinAmount}
+                        maskingCurrency={true}
+                        currencySymbol={selectedPgChannelIndex !== "" ? pgChannelList[selectedPgChannelIndex - 1]["currency_symbol"] : ""}
                     />
 
                     <TextField
                         textFieldName={"Maximum Amount"}
                         setValue={setMaxAmount}
+                        maskingCurrency={true}
+                        currencySymbol={selectedPgChannelIndex !== "" ? pgChannelList[selectedPgChannelIndex - 1]["currency_symbol"] : ""}
                     />
 
 
