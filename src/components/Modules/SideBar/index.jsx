@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { logoutApi } from '../../../utils/Authentication/logout'
 
 const SideBar = () => {
     const navigate = useNavigate()
+
+    const logout = () => {
+
+        logoutApi()
+
+        navigate('/login')
+
+    }
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -63,8 +72,10 @@ const SideBar = () => {
                     <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg" onClick={() => navigate('/')}>Dashboard</li>
 
                     {/* Transaction Section */}
-                    <Disclosure title="Transaction">
-                        <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg">Transaction History</li>
+                    <Disclosure title="Deposit">
+                        <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg"
+                            onClick={() => navigate('/deposit')}
+                        >Deposit History</li>
                     </Disclosure>
 
                     {/* Withdrawal */}
@@ -80,35 +91,10 @@ const SideBar = () => {
                         </li>
                     </Disclosure>
 
-                    {/* Merchant */}
-                    <Disclosure title="Merchant">
-                        <li onClick={() => navigate('/merchant')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Register New Merchant</li>
-                        <li onClick={() => navigate('/merchant/payment-channel')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Add Payment Channel</li>
-                        <li onClick={() => navigate('/merchant/list')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">List of Merchants</li>
-                    </Disclosure>
 
-                    {/* Payment Channel */}
-                    <Disclosure title="Payment Channel">
-                        <li onClick={() => navigate('/psp')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Create New Channel</li>
-                        <li onClick={() => navigate('/psp/list')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">List of Channels</li>
-                    </Disclosure>
-
-                    {/* Payment Gateway */}
-                    <Disclosure title="Payment Gateway">
-                        <li onClick={() => navigate('/pg')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Register Gateway</li>
-                        <li onClick={() => navigate('/pg/channel')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Register Gateway Channel</li>
-                        <li onClick={() => navigate('/pg/channel/list')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">List of Gateways</li>
-                    </Disclosure>
-
-                    {/* Utilities */}
-                    <Disclosure title="Utilities">
-                        <li onClick={() => navigate('/currency')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">Register Currency</li>
-                        <li onClick={() => navigate('/currency/list')} className="hover:bg-gray-100 px-4 py-2 rounded-lg">List of Currency</li>
-                        <li className="hover:bg-gray-100 px-4 py-2 rounded-lg">Register New Status</li>
-                        <li className="hover:bg-gray-100 px-4 py-2 rounded-lg">List of Status</li>
-                    </Disclosure>
-
-                    <li className="cursor-pointer hover:bg-red-100 px-4 py-2 rounded-lg text-red-500">Sign Out</li>
+                    <li className="cursor-pointer hover:bg-red-100 px-4 py-2 rounded-lg text-red-500"
+                        onClick={() => { logout() }}
+                    >Sign Out</li>
                 </ul>
             </div>
         </>

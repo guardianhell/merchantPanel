@@ -7,3 +7,5 @@ export const isLogin = atomWithStorage("isLogin", false)
 
 export const currentPage = atom("/")
 
+export const merchantInformation = atom([])
+

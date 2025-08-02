@@ -3,7 +3,7 @@ import EachUtils from '../../../utils/EachUtils'
 
 const DropDownList = ({ dropDownText, setValue, dataList, field, defaultValue, textHide }) => {
     return (
-        <div className='mb-5'>
+        <div className='mb-5 mt-2'>
 
             {
                 !textHide ? <label for={dropDownText} class="block mb-2 text-sm font-medium text-gray-900">{dropDownText}</label> : ""

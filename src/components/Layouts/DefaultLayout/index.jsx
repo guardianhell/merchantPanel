@@ -5,7 +5,9 @@ import SideBar from '../../Modules/SideBar'
 const DefaultLayout = ({ children }) => {
     return (
         <div className='min-h-screen '>
-            <Navbar />
+            <Navbar
+                merchantName={"spay"}
+            />
             <div className='grid grid-cols-[250px_1fr]'>
                 <SideBar />
                 <div className=''>

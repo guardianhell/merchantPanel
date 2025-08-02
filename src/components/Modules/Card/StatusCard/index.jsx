@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StatusCard = ({ cardTitle, cardPercentages, cardNumber, cardImage }) => {
+const StatusCard = ({ cardTitle, cardPercentages, cardNumber, cardImage, persentageColor }) => {
     return (
 
         <div className='grid grid-cols-4 rounded-lg w-full'>
@@ -15,7 +15,7 @@ const StatusCard = ({ cardTitle, cardPercentages, cardNumber, cardImage }) => {
                     <h2 className="card-title text-black col-span-5">{cardTitle}</h2>
                     <h3 className='text-black'>{cardPercentages}</h3>
                 </div>
-                <p className='p-4 text-black text-4xl font-bold'>{cardNumber}</p>
+                <p className='p-4 text-black font-bold sm:text-sm md:text-md xl:text-2xl'>{cardNumber}</p>
                 {/* <div className="card-actions justify-end">
                     <button className="btn btn-primary">Buy Now</button>
                 </div> */}

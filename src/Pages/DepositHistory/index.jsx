@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import DefaultLayout from '../../components/Layouts/DefaultLayout'
 import TableCard from '../../components/Modules/Card/TableCard'
 import { header } from 'framer-motion/client'
-import { getStatementTransaction } from '../../utils/Statement/getStatement'
+import { getDepositHistory, getStatementTransaction } from '../../utils/Statement/getStatement'
 import DropDownList from '../../components/Modules/DropDownList'
 import TextField from '../../components/Modules/Textfield'
 import Button from '../../components/Modules/Button'
@@ -11,15 +11,13 @@ import DatePickerComponent from '../../components/Modules/DatePicker/index2'
 import { getAllMerchantAccount } from '../../utils/Merchant/getAllMerchantAccount'
 import numberFormatted from '../../utils/numberFormated'
 
-const StatementPage = () => {
 
+const DepositHistory = () => {
     const datalistHeader = [
-        { header: "Transaction Number", field: "transaction_number" },
-        { header: "Transaction Type", field: "transaction_type" },
-        { header: "Cash In", field: "cash_in", numberFormatted: true },
-        { header: "Cash Out", field: "cash_out", numberFormatted: true },
+        { header: "Reference No", field: "ref_no" },
+        { header: "Amount", field: "amount", numberFormatted: true },
+        { header: "Currency", field: "currency_name" },
         { header: "Transaction Date", field: "transaction_date" },
-        { header: "Balance", field: "balance", numberFormatted: true },
         { header: "Status", field: "status_name" }
     ]
 
@@ -96,8 +94,13 @@ const StatementPage = () => {
             transaction_number: searchTrxNumber
         }
 
-        getStatementTransaction(data).then((result) => {
-            console.log(result);
+        // getStatementTransaction(data).then((result) => {
+        //     console.log(result);
+        //     setDataList(result.data)
+        // })
+
+        getDepositHistory(data).then((result) => {
+            console.log("TARIKSNA", result);
             setDataList(result.data)
         })
 
@@ -111,7 +114,7 @@ const StatementPage = () => {
         <DefaultLayout>
             <div className='m-4'>
                 <div className='my-10 flex items-center justify-center text-2xl'>
-                    <label>Statement Account</label>
+                    <label>Deposit History</label>
                 </div>
                 <div className='grid grid-cols-6 gap-4 text-center'>
                     <p>Account</p>
@@ -206,13 +209,8 @@ const StatementPage = () => {
 
             </div>
 
-
-
-
-
-
         </DefaultLayout>
     )
 }
 
-export default StatementPage
+export default DepositHistory

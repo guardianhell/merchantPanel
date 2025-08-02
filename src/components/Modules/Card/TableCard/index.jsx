@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import EachUtils from '../../../../utils/EachUtils'
 import { useNavigate } from 'react-router-dom'
-import MerchantDetail from '../../../../Pages/MerchantDetail'
 import { useAtom } from 'jotai'
 import { isOpenModalAtom } from '../../../../jotai/atoms'
 import { useEffect } from 'react'
+import numberFormatted from '../../../../utils/numberFormated'
 
-const TableCard = ({ datalistHeader, dataList, classname, hasDetailButton, detailButtonNavigation }) => {
+const TableCard = ({ datalistHeader, dataList, classname, hasDetailButton, detailButtonNavigation, currencySymbol }) => {
 
     const navigate = useNavigate()
 
@@ -54,7 +54,7 @@ const TableCard = ({ datalistHeader, dataList, classname, hasDetailButton, detai
                                     of={datalistHeader}
                                     render={(item2, index2) => (
                                         <td key={index2} class="px-6 py-4">
-                                            {item[item2.field]}
+                                            {item2.numberFormatted ? numberFormatted(item[item2.field], currencySymbol) : item[item2.field]}
                                         </td>
                                     )}
                                 />

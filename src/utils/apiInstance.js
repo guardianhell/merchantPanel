@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 export const apiInstance = axios.create({
-    baseURL: "http://localhost:8081/api-v1/",
+    baseURL: import.meta.env.VITE_baseURLAPI,
     headers: {
         'Access-Control-Allow-Origin': '*',
         "Content-Type": "application/json"
@@ -10,7 +10,7 @@ export const apiInstance = axios.create({
 })
 
 export const authApiInstance = axios.create({
-    baseURL: "http://localhost:4000/api-v1/auth",
+    baseURL: import.meta.env.VITE_baseURLAUTH,
     headers: {
         'Access-Control-Allow-Origin': '*',
         "Content-Type": "application/json"
