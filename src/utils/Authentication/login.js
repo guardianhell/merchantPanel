@@ -10,7 +10,7 @@ export const login = async (email, password, redirect) => {
         const loginData = {
             email: email,
             password: password,
-            redirect: "http://localhost:4000/redirect/?username=" + email + "&url=/"
+            redirect: import.meta.env.VITE_baseURLRedirect + "/redirect/?username=" + email + "&url=/"
         }
 
         const loginResponse = await authApiInstance.post('/login', loginData, { withCredentials: true }).then(async (result) => {
