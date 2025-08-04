@@ -116,12 +116,13 @@ const DepositHistory = () => {
                 <div className='my-10 flex items-center justify-center text-2xl'>
                     <label>Deposit History</label>
                 </div>
-                <div className='grid grid-cols-6 gap-4 text-center'>
+                {/* <div className='grid grid-cols-6 gap-4 text-center'>
                     <p>Account</p>
                     <p>Start Date</p>
                     <p>End Date</p>
-                </div>
-                <div className='grid grid-cols-6 gap-4'>
+                </div> */}
+                <div className='grid grid-cols-2 w-fit'>
+                    <p>Account</p>
                     <DropDownList
                         dropDownText="Account Number"
                         textHide={true}
@@ -129,13 +130,14 @@ const DepositHistory = () => {
                         field={"merchant_account_number"}
                         setValue={setSelectedMerchantAccountId}
                     />
+                    <p>Start Date</p>
                     <DatePickerComponent
                         id={"Start Date"}
                         setDate={setStartDate}
                         disabled={false}
                         maxDate={minimumDate}
                     />
-
+                    <p>End Date</p>
                     <DatePickerComponent
                         id={"End Date"}
                         setDate={setEndDate}
@@ -166,7 +168,7 @@ const DepositHistory = () => {
                         setDate={setEndDate}
                     /> */}
                 </div>
-                <div className='mt-4 grid grid-cols-6 gap-4 items-center text-center'>
+                {/* <div className='mt-4 grid grid-cols-6 gap-4 items-center text-center'>
                     <p>Search Transaction Number</p>
                     <div className='mt-3'>
                         <TextField
@@ -185,14 +187,14 @@ const DepositHistory = () => {
                         buttonAction={search}
                     />
 
-                </div>
+                </div> */}
 
-                <div className='mt-4 grid grid-cols-12 gap-4 items-center text-center'>
+                {/* <div className='mt-4 grid grid-cols-12 gap-4 items-center text-center'>
                     <Button
                         buttonText={"Export"}
                         action={"submit"}
                     />
-                </div>
+                </div> */}
 
 
             </div>

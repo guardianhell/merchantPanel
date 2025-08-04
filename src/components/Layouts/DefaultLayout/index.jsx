@@ -8,7 +8,7 @@ const DefaultLayout = ({ children }) => {
             <Navbar
                 merchantName={"spay"}
             />
-            <div className='grid grid-cols-[250px_1fr]'>
+            <div className='grid sm:grid-cols-[120px_1fr] md:grid-cols-[250px_1fr] lg:grid-cols-[250px_1fr]'>
                 <SideBar />
                 <div className=''>
                     {children}

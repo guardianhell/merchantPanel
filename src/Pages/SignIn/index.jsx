@@ -24,24 +24,13 @@ const SignIn = () => {
 
         console.log(currentPages);
 
-
-
-
         const response = await login(email, password, redirectPage, currentPages).then(async (result) => {
 
-
             if (result.status === 200) {
-
                 setIslogin(true)
-
                 console.log(result);
-
-
                 window.location.href = result.data
-
                 //navigate('/')
-
-
             } else {
                 setInvalidLogin(true)
                 console.log(invalidLogin);
