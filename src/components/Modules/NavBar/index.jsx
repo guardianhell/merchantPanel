@@ -33,11 +33,14 @@ const NavBar = ({ children, merchantName }) => {
                 <div className="flex gap-10 mr-8">
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                            <div className="bg-neutral text-neutral-content w-24 rounded-full">
+                                <span className="text-3xl"></span>
+                            </div>
+                            {/* <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
                                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                            </div>
+                            </div> */}
                         </div>
                         <ul
                             tabIndex={0}

@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import DefaultLayout from '../../components/Layouts/DefaultLayout'
 import TableCard from '../../components/Modules/Card/TableCard'
-import { getDepositHistory, getStatementTransaction } from '../../utils/Statement/getStatement'
 import DropDownList from '../../components/Modules/DropDownList'
 import TextField from '../../components/Modules/Textfield'
 import Button from '../../components/Modules/Button'
 import DatePickerCustom from '../../components/Modules/DatePicker'
 import DatePickerComponent from '../../components/Modules/DatePicker/index2'
-import { getAllMerchantAccount } from '../../utils/Merchant/getAllMerchantAccount'
 import numberFormatted from '../../utils/numberFormated'
+import { getWithdrawalHistory } from '../../utils/Withdrawal/getWithdrawal'
+import { getAllMerchantAccount } from '../../utils/Merchant/getAllMerchantAccount'
 
+const WithdrawalHistory = () => {
 
-const DepositHistory = () => {
     const datalistHeader = [
         { header: "Reference No", field: "ref_no" },
         { header: "Amount", field: "amount", numberFormatted: true },
         { header: "Currency", field: "currency_name" },
-        { header: "Transaction Date", field: "transaction_date" },
+        { header: "Withdrawal Date", field: "withdrawal_date" },
         { header: "Status", field: "status_name" }
     ]
 
-    const convertTimeStringToEpoch = (timeString) => {
-        let epoch = new Date(timeString + " 23:59:59").getTime()
-
-        return epoch
-
-    }
 
     const [dataList, setDataList] = useState([])
     const [startDate, setStartDate] = useState(null)
@@ -38,36 +32,13 @@ const DepositHistory = () => {
     const [minimumDate, setMinDate] = useState(null)
 
 
-    // useEffect(() => {
-
-    //     getStatementTransaction().then((result) => {
-    //         console.log(result);
-    //         setDataList(result.data)
-    //     })
-
-    // }, [])
-
     useEffect(() => {
 
         getAllMerchantAccount().then((result) => {
             console.log(result.data);
             setMerchantAccountList(result.data)
         })
-
     }, [])
-
-    useEffect(() => {
-
-        setEndDate(null)
-        let max = new Date(startDate)
-        max.setDate(max.getDate() + 30)
-        max.setHours(23)
-        max.setMinutes(59)
-        max.setSeconds(59)
-        setMaxDate(max)
-
-    }, [startDate])
-
 
     useEffect(() => {
 
@@ -82,10 +53,19 @@ const DepositHistory = () => {
 
     }, [selectedMerchantAccountId])
 
+    useEffect(() => {
 
+        setEndDate(null)
+        let max = new Date(startDate)
+        max.setDate(max.getDate() + 30)
+        max.setHours(23)
+        max.setMinutes(59)
+        max.setSeconds(59)
+        setMaxDate(max)
+
+    }, [startDate])
 
     const search = async () => {
-
 
         const data = {
             merchant_account_id: merchantAccountList[selectedMerchantAccountIndex - 1]["id"],
@@ -94,18 +74,11 @@ const DepositHistory = () => {
             transaction_number: searchTrxNumber
         }
 
-        // getStatementTransaction(data).then((result) => {
-        //     console.log(result);
-        //     setDataList(result.data)
-        // })
-
-        getDepositHistory(data).then((result) => {
-            console.log("TARIKSNA", result);
+        getWithdrawalHistory(data).then((result) => {
+            console.log("WITHDRAW", result.data);
             setDataList(result.data)
         })
 
-        document.getElementById("Search Transaction Number").value = ""
-        setSearchTrxNumber("")
     }
 
 
@@ -114,13 +87,13 @@ const DepositHistory = () => {
         <DefaultLayout>
             <div className='m-4'>
                 <div className='my-10 flex items-center justify-center text-2xl'>
-                    <label>Deposit History</label>
+                    <label>Withdrawal History</label>
                 </div>
-                {/* <div className='grid grid-cols-6 gap-4 text-center'>
-                    <p>Account</p>
-                    <p>Start Date</p>
-                    <p>End Date</p>
-                </div> */}
+                {/* <div className='grid grid-cols-2 gap-4 text-center'>
+                        <p>Account</p>
+                        <p>Start Date</p>
+                        <p>End Date</p>
+                    </div> */}
                 <div className='grid grid-cols-2 w-fit'>
                     <p>Account</p>
                     <DropDownList
@@ -158,43 +131,43 @@ const DepositHistory = () => {
                     </div>
 
                     {/* <DatePickerCustom
-                        pickerField={"startDate"}
-                        date={startDate}
-                        setDate={setStartDate}
-                    />
-                    <DatePickerCustom
-                        pickerField={"endDate"}
-                        date={endDate}
-                        setDate={setEndDate}
-                    /> */}
+                            pickerField={"startDate"}
+                            date={startDate}
+                            setDate={setStartDate}
+                        />
+                        <DatePickerCustom
+                            pickerField={"endDate"}
+                            date={endDate}
+                            setDate={setEndDate}
+                        /> */}
                 </div>
                 {/* <div className='mt-4 grid grid-cols-6 gap-4 items-center text-center'>
-                    <p>Search Transaction Number</p>
-                    <div className='mt-3'>
-                        <TextField
-                            textHide={true}
-                            setValue={setSearchTrxNumber}
-                            textFieldName={"Search Transaction Number"}
+                        <p>Search Transaction Number</p>
+                        <div className='mt-3'>
+                            <TextField
+                                textHide={true}
+                                setValue={setSearchTrxNumber}
+                                textFieldName={"Search Transaction Number"}
+                            />
+                        </div>
+    
+                        <Button
+                            disable={
+                                (!selectedMerchantAccountId || !startDate || !endDate) ? true : false
+                            }
+                            buttonText={"Search"}
+                            action={"submit"}
+                            buttonAction={search}
                         />
-                    </div>
-
-                    <Button
-                        disable={
-                            (!selectedMerchantAccountId || !startDate || !endDate) ? true : false
-                        }
-                        buttonText={"Search"}
-                        action={"submit"}
-                        buttonAction={search}
-                    />
-
-                </div> */}
+    
+                    </div> */}
 
                 {/* <div className='mt-4 grid grid-cols-12 gap-4 items-center text-center'>
-                    <Button
-                        buttonText={"Export"}
-                        action={"submit"}
-                    />
-                </div> */}
+                        <Button
+                            buttonText={"Export"}
+                            action={"submit"}
+                        />
+                    </div> */}
 
 
             </div>
@@ -210,9 +183,8 @@ const DepositHistory = () => {
                 ></TableCard>
 
             </div>
-
         </DefaultLayout>
     )
 }
 
-export default DepositHistory
+export default WithdrawalHistory

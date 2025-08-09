@@ -13,6 +13,7 @@ import Cookies from "js-cookie"
 import { AuthProvider } from "./utils/AuthProvider";
 import DepositHistory from "./Pages/DepositHistory";
 import MerchantInformation from "./Pages/MerchantAccountInfo";
+import WithdrawalHistory from "./Pages/WithdrawalHistory";
 
 
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
           element: <MerchantInformation />,
           path: "/info"
         },
+        {
+          element: <WithdrawalHistory />,
+          path: "/withdrawal"
+        }
       ]
   },
   {

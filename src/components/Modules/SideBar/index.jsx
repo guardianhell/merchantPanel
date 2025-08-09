@@ -80,8 +80,10 @@ const SideBar = () => {
 
                     {/* Withdrawal */}
                     <Disclosure title="Withdrawal">
-                        <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg">Withdrawal Request</li>
-                        <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg">Withdrawal History</li>
+                        {/* <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg">Withdrawal Request</li> */}
+                        <li className="cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-lg"
+                            onClick={() => navigate('/withdrawal')}
+                        >Withdrawal History</li>
                     </Disclosure>
 
                     {/* Statement */}
