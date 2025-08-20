@@ -24,16 +24,22 @@ const MerchantAccountDetail = () => {
 
     const dataListHeader = [
         { header: "Ref No", field: "ref_no" },
-        { header: "Amount", field: "amount" },
+        { header: "Request Amount", field: "amount", numberFormatted: true },
+        { header: "Fee %", field: "merchant_payment_fee" },
+        { header: "Nett Amount", field: "nett_amount", numberFormatted: true },
         { header: "Sender", field: "sender" },
         { header: "Notes", field: "notes" },
         { header: "Transaction Date", field: "transaction_date" },
+        { header: "Processed Date", field: "processed_date" },
         { header: "Status", field: "status_name" },
     ]
 
     const { state } = useLocation()
 
     useEffect(() => {
+
+        console.log("STATE", state);
+
 
 
 
@@ -128,6 +134,7 @@ const MerchantAccountDetail = () => {
                                     dataList={transactionList}
                                     datalistHeader={dataListHeader}
                                     hasDetailButton={false}
+                                    currencySymbol={state.currencySymbol}
                                 />
                             </div>
                         </div>

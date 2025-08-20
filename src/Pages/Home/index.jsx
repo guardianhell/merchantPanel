@@ -18,6 +18,11 @@ const Home = () => {
 
     useEffect(() => {
 
+        const cooki = Cookies.get("jwt")
+
+        console.log("COOOK", cooki);
+
+
         getAllMerchantAccount().then((result) => {
             console.log("MERCH ACC", result.data);
             setMerchantAccount(result.data)
